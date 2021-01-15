@@ -12,4 +12,7 @@ export class HttpService {
   public get(url: string): Observable<any>{
     return this.httpClient.get(url);
   }
+  public post(url: string): Observable<any>{
+    return this.httpClient.post(url, {});
+  }
 }

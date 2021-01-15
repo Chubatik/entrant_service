@@ -1,0 +1,8 @@
+.centered{
+  position: absolute;
+  top: 50%;
+  text-align: center;
+}
+button{
+  font-size: 25px;
+}

@@ -13,6 +13,6 @@ export class AppComponent implements OnInit{
   title = 'entrantService';
   // tslint:disable-next-line:typedef
   ngOnInit() {
-    this.httpService.get('/api/test').subscribe();
+    // this.httpService.get('/api/test').subscribe();
   }
 }
