@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.link {
+  color: white;
+}
+.centered{
+  text-align: center;
+}
+.container {
+  padding: 0.5%;
+}

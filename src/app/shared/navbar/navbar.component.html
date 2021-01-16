@@ -1,6 +1,29 @@
-<nav class="navbar  navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/" style="font-size: 30px">
-    <img src="./assets/images/logo.png" width="50" height="50" class="d-inline-block align-top" alt="" >
-    Реєстр абітурієнтів ВТК
-  </a>
+<nav class="navbar navbar-expand-lg navbar-secondary bg-secondary fixed-top">
+  <div class="container">
+    <a class="navbar-brand link" href="#">
+      <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Entrant service
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+          <img src="assets/icons/menu.svg" class="nav-icon">
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link" routerLink="/add">Add new entrant</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link" routerLink="/view">View entrants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
