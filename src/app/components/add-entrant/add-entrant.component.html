@@ -25,7 +25,7 @@
           <input type="text" class="form-control" id="inputSurname" placeholder="Іванов">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputEducation">Номер свідоцтва про закінчення 9 класу </label>
+          <label for="inputEducation">Номер свідоцтва про здобуття базової середньої освіти </label>
           <input type="text" name="example" id="inputEducation" class="form-control" placeholder="12345678">
         </div>
         <div class="form-group col-md-6">
@@ -40,15 +40,15 @@
           <label for="inputSpecialty">Спеціальність</label>
           <input type="text" name="example" list="SpecialtyList" id="inputSpecialty" class="form-control" placeholder="Оберіть зі списку">
           <datalist id="SpecialtyList">
-            <option *ngFor="let spec of specialties" value="{{spec.specialty_name}}">
+            <option *ngFor="let spec of specialties" [value]="spec.specialty_name">
           </datalist>
       </div>
         <div class="form-group col-md-6">
           <input type="checkbox" class="form-check-input" (change)="togglePrivilege()" [checked]="isPrivilege">
-          <label for="inputSpecialty">Пільги</label>
+          <label for="inputPrivilege">Пільги</label>
           <input *ngIf="isPrivilege" type="text" name="example" list="PrivilegesList" id="inputPrivilege" class="form-control" placeholder="Оберіть зі списку">
           <datalist id="PrivilegesList">
-            <option *ngFor="let priv of privileges" value="{{priv.privilege_name}}">
+            <option *ngFor="let priv of privileges" [value]="priv.privilege_name">
           </datalist>
       </div>
         </div>
