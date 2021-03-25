@@ -3,28 +3,24 @@
   <h1 class="display-3">Перегляд списку абітурієнтів</h1>
   <p class="lead">Тут ви можете переглядати список абітурієнтів та сортувати список за різними полями(в розробці). Натиснувши на будь-яке поле, ви перейдете до розширеного перегляду інформації про  абітурієнта(в розробці).</p>
 </header>
-
-
-<!--<ul class="list-group">
-  <li class="list-group-item pointer" *ngFor="let ent of entrants">
-
-  </li>
-</ul>-->
+  <div class="overflow">
   <table class="table table-bordered table-hover">
     <thead>
-    <th scope="col">Прізвище</th>
-    <th scope="col">Ім'я</th>
-    <th scope="col">По-батькові</th>
-    <th scope="col">Дата подачі заяви</th>
+      <tr class="centered">
+        <th>Прізвище</th>
+        <th>Ім'я</th>
+        <th>По-батькові</th>
+        <th>Дата подачі заяви</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let ent of entrants" class="pointer">
-      <th scope="row">{{ent.entrant_surname}}</th>
-      <th scope="row"  >{{ent.entrant_name}}</th>
-      <th scope="row">{{ent.entrant_patronym}}</th>
-      <th scope="row">{{ent.declaration_date| date:'dd-MM-YYYY'}}</th>
+    <tr *ngFor="let ent of entrants" class="pointer centered">
+      <td>{{ent.entrant_surname}}</td>
+      <td>{{ent.entrant_name}}</td>
+      <td>{{ent.entrant_patronym}}</td>
+      <td>{{ent.declaration_date| date:'dd-MM-YYYY'}}</td>
     </tr>
     </tbody>
-
   </table>
+  </div>
 </div>

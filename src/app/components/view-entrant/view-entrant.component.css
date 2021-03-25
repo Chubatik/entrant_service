@@ -1,3 +1,7 @@
 .pointer {
   cursor: pointer;
 }
+.overflow{
+  overflow-y: scroll;
+  height: 70vh;
+}

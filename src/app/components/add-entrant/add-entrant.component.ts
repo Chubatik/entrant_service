@@ -9,8 +9,8 @@ import {HttpService} from '../../services/http.service';
 export class AddEntrantComponent implements OnInit {
   specialties = [];
   privileges = [];
-  isPrivilege = false;
-  isElevenClass = false;
+  isPrivilege = true;
+  isElevenClass = true;
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
