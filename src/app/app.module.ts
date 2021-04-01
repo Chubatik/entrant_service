@@ -9,6 +9,8 @@ import { NavbarComponent} from './shared/navbar/navbar.component';
 import {FooterComponent} from './shared/footer/footer.component';
 import {AddEntrantComponent} from './components/add-entrant/add-entrant.component';
 import {ViewEntrantComponent} from './components/view-entrant/view-entrant.component';
+import {FormsModule} from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const appRoutes: Routes = [
   {path: '', component: StartPageComponent},
@@ -24,12 +26,14 @@ const appRoutes: Routes = [
     AddEntrantComponent,
     ViewEntrantComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    CommonModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes),
+        CommonModule,
+        FormsModule,
+        NgSelectModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

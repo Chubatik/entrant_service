@@ -4,71 +4,82 @@
   <p class="lead">Щоб додати абітурієнта заповніть форму нижче.</p>
 </header>
 </div>
-  <form>
+  <form #f='ngForm'>
     <div class="container">
       <h4 class="margin-set">Основна інформація про студента</h4>
       <div class="row colored-border">
         <div class="form-group col-md-6">
           <label for="inputName">Ім'я</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Іван">
+          <input type="text" class="form-control" id="inputName" placeholder="Іван" name="name" [(ngModel)]="name">
         </div>
         <div class="form-group col-md-6">
-          <label for="IsHostel">Чи потрібен гуртожиток?</label>
-          <input type="text" name="example" class="form-control" id="IsHostel" list="IsHostelList" placeholder="Оберіть зі списку">
-          <datalist id="IsHostelList">
-            <option value="Так">
-            <option value="Ні">
-          </datalist>
+          <label for="isHostel">Чи потрібен гуртожиток?</label>
+          <ng-select id="isHostel"
+                      name="isHostel"
+                      [items]="hostelOptions"
+                      bindLabel="name"
+                      bindValue="isHostel"
+                      [(ngModel)]="isHostel"
+                     placeholder="Оберіть зі списку"></ng-select>
         </div>
         <div class="form-group col-md-6">
           <label for="inputSurname">Прізвище</label>
-          <input type="text" class="form-control" id="inputSurname" placeholder="Іванов">
+          <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Іванов" [(ngModel)]="surname">
         </div>
         <div class="form-group col-md-6">
           <label for="inputEducation">Номер свідоцтва про здобуття базової середньої освіти </label>
-          <input type="text" name="example" id="inputEducation" class="form-control" placeholder="12345678">
+          <input type="text" name="educationNumber" id="inputEducation" class="form-control" placeholder="12345678" [(ngModel)]="educationNumber">
         </div>
         <div class="form-group col-md-6">
           <label for="inputPatronym">По-батькові</label>
-          <input type="text" class="form-control" id="inputPatronym" placeholder="Іванович">
+          <input type="text" class="form-control" id="inputPatronym" name="patronym" placeholder="Іванович" [(ngModel)]="patronym">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputSpecialty">Номер паспорту</label>
-          <input type="text" name="example" id="inputPassport" class="form-control" placeholder="123456789">
+          <label for="inputPassport">Номер паспорту</label>
+          <input type="text" name="passportNumber" id="inputPassport" class="form-control" placeholder="123456789" [(ngModel)]="passportNumber">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputSpecialty">Спеціальність</label>
-          <input type="text" name="example" list="SpecialtyList" id="inputSpecialty" class="form-control" placeholder="Оберіть зі списку">
-          <datalist id="SpecialtyList">
-            <option *ngFor="let spec of specialties" [value]="spec.specialty_name">
-          </datalist>
+          <label for="selectSpecialty">Спеціальність</label>
+          <ng-select id="selectSpecialty"
+                      [items]="specialties"
+                      name="specialtyId"
+                      bindLabel="specialty_name"
+                      bindValue="specialty_id"
+                      [(ngModel)]="specialtyId"
+                      placeholder="Оберіть зі списку"></ng-select>
       </div>
         <div class="form-group col-md-6">
-          <input type="checkbox" class="form-check-input" (change)="togglePrivilege()" [checked]="isPrivilege">
-          <label for="inputPrivilege">Пільги</label>
-          <input *ngIf="isPrivilege" type="text" name="example" list="PrivilegesList" id="inputPrivilege" class="form-control" placeholder="Оберіть зі списку">
-          <datalist id="PrivilegesList">
-            <option *ngFor="let priv of privileges" [value]="priv.privilege_name">
-          </datalist>
+          <label for="selectPrivilege">Пільги</label>
+              <ng-select id="selectPrivilege"
+                         name="privilegeId"
+                         [items]="privileges"
+                         bindLabel="privilege_name"
+                         bindValue="privilege_id"
+                         [(ngModel)]="privilegeId"
+                         placeholder="Оберіть зі списку"></ng-select>
       </div>
+        <div class="form-group col-md-6">
+          <label for="idCode">Ідентифікаційний код</label>
+          <input type="text" name="identificationCode" id="idCode" class="form-control" placeholder="1234567890" [(ngModel)]="identificationCode">
+        </div>
         </div>
       <h4 class="margin-set">Додаткова інформація про студента</h4>
       <div class="row colored-border">
         <div class="form-check col-md-12 margin-set">
-          <input type="checkbox" class="form-check-input" id="IsElevenClass" (change)="toggleElevenClass()" [checked]="isElevenClass">
+          <input type="checkbox" class="form-check-input" id="IsElevenClass" name="isElevenGrade" [(ngModel)]="isElevenGrade">
           <label class="form-check-label" for="IsElevenClass">Чи закінчував абітурієнт 11 клас?</label>
         </div>
-        <div class="form-group col-md-6" *ngIf="isElevenClass">
+        <div class="form-group col-md-6" *ngIf="isElevenGrade">
           <label for="inputExam">Номер сертифікату ЗНО</label>
-          <input type="text" name="example" id="inputExam" class="form-control" placeholder="1234567">
+          <input type="text" name="independentExamsNumber" id="inputExam" class="form-control" placeholder="1234567" [(ngModel)]="independentExamsNumber">
         </div>
-        <div class="form-group col-md-6" *ngIf="isElevenClass">
+        <div class="form-group col-md-6" *ngIf="isElevenGrade">
           <label for="inputMilitary">Номер військового квитка</label>
-          <input type="text" name="example" id="inputMilitary" class="form-control" placeholder="1234567891">
+          <input type="text" name="militaryTicketNumber" id="inputMilitary" class="form-control" placeholder="1234567890" [(ngModel)]="militaryTicketNumber">
         </div>
       </div>
       <div class="form-check col-md-12 centered">
-        <button class="btn btn-success margin-set">Додати абітурієнта</button>
+        <button class="btn btn-success margin-set" (click)="addEntrant(f)">Додати абітурієнта</button>
       </div>
     </div>
   </form>

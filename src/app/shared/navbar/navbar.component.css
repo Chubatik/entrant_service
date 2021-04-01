@@ -1,3 +1,9 @@
 .nav-icon {
   width: 30px;
 }
+nav{
+  background-color: rgb(87, 150, 210);
+}
+.nav-item:hover {
+  background-color: rgb(59, 110, 177);
+}
