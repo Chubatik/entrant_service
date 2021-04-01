@@ -24,6 +24,11 @@ export class AddEntrantComponent implements OnInit {
     specialties = [];
     privileges = [];
     hostelOptions = [{isHostel: true , name: 'Так'}, {isHostel: false , name: 'Ні'}];
+    patternForTextInput = /[А-ЯІЇЄҐ]{2,50}$/gi; // Потрібно ввести від 2 до 50 символів кирилиці
+    nameMatch = true;
+    patronymMatch = true;
+    surnameMatch = true;
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
@@ -45,9 +50,6 @@ export class AddEntrantComponent implements OnInit {
     };
     this.privileges.push(nonPrivilegeCase);
   }
-  toggleElevenGrade(): void {
-    this.isElevenGrade = !this.isElevenGrade;
-  }
   checkNonPrivilegeCase(): void {
     this.isPrivilege = this.privilegeId !== null;
   }
@@ -57,7 +59,14 @@ export class AddEntrantComponent implements OnInit {
       this.militaryTicketNumber = null;
     }
   }
+  checkForm(): void {
+    this.nameMatch = !!this.name.match(this.patternForTextInput);
+    this.patronymMatch = !!this.patronym.match(this.patternForTextInput);
+    this.surnameMatch = !!this.surname.match(this.patternForTextInput);
+
+  }
   addEntrant(form: NgForm): void {
+    this.checkForm();
     this.checkNonPrivilegeCase();
     this.checkNonElevenGradeCase();
     const entrant = {
@@ -75,6 +84,6 @@ export class AddEntrantComponent implements OnInit {
       specialtyId: this.specialtyId,
       surname: this.surname
     };
-    form.reset();
+    // form.reset();
   }
 }
