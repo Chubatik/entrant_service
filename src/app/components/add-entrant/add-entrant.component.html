@@ -35,7 +35,10 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputEducation">Номер свідоцтва про здобуття базової середньої освіти </label>
-          <input type="text" name="educationNumber" id="inputEducation" class="form-control" [maxLength]="8" placeholder="12345678" [(ngModel)]="educationNumber">
+          <input type="text" name="educationNumber" id="inputEducation" aria-describedby="educationHelp" class="form-control" [maxLength]="8" placeholder="12345678" [(ngModel)]="educationNumber">
+          <small id="educationHelp" class="form-text alert-danger" [hidden]="educationMatch">
+            Потрібно ввести 8 цифер
+          </small>
         </div>
         <div class="form-group col-md-6">
           <label for="inputPatronym">По-батькові</label>
@@ -46,7 +49,10 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassport">Номер паспорту</label>
-          <input type="text" name="passportNumber" id="inputPassport" class="form-control" [maxLength]="9" placeholder="123456789" [(ngModel)]="passportNumber">
+          <input type="text" name="passportNumber" id="inputPassport" aria-describedby="passportHelp" class="form-control" [maxLength]="9" placeholder="123456789" [(ngModel)]="passportNumber">
+          <small id="passportHelp" class="form-text alert-danger" [hidden]="passportMatch">
+            Потрібно ввести 9 цифер
+          </small>
         </div>
         <div class="form-group col-md-6">
           <label for="selectSpecialty">Спеціальність</label>
@@ -70,7 +76,10 @@
       </div>
         <div class="form-group col-md-6">
           <label for="idCode">Ідентифікаційний код</label>
-          <input type="text" name="identificationCode" id="idCode" [maxLength]="10" class="form-control" placeholder="1234567890" [(ngModel)]="identificationCode">
+          <input type="text" name="identificationCode" id="idCode" aria-describedby="idHelp" [maxLength]="10" class="form-control" placeholder="1234567890" [(ngModel)]="identificationCode">
+          <small id="idHelp" class="form-text alert-danger" [hidden]="idMatch">
+            Потрібно ввести 10 цифер
+          </small>
         </div>
         </div>
       <h4 class="margin-set">Додаткова інформація про студента</h4>
@@ -81,11 +90,17 @@
         </div>
         <div class="form-group col-md-6" *ngIf="isElevenGrade">
           <label for="inputExam">Номер сертифікату ЗНО</label>
-          <input type="text" name="independentExamsNumber" id="inputExam" class="form-control" [maxLength]="7" placeholder="1234567" [(ngModel)]="independentExamsNumber">
+          <input type="text" name="independentExamsNumber" aria-describedby="examsHelp" id="inputExam" class="form-control" [maxLength]="7" placeholder="1234567" [(ngModel)]="independentExamsNumber">
+          <small id="examsHelp" class="form-text alert-danger" [hidden]="examsMatch">
+            Потрібно ввести 7 цифер
+          </small>
         </div>
         <div class="form-group col-md-6" *ngIf="isElevenGrade">
           <label for="inputMilitary">Номер військового квитка</label>
-          <input type="text" name="militaryTicketNumber" id="inputMilitary" class="form-control" [maxLength]="10" placeholder="1234567890" [(ngModel)]="militaryTicketNumber">
+          <input type="text" name="militaryTicketNumber" id="inputMilitary" aria-describedby="militaryHelp" class="form-control" [maxLength]="10" placeholder="1234567890" [(ngModel)]="militaryTicketNumber">
+          <small id="militaryHelp" class="form-text alert-danger" [hidden]="militaryMatch">
+            Потрібно ввести 10 цифер
+          </small>
         </div>
       </div>
       <div class="form-check col-md-12 centered">

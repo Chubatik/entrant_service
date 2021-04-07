@@ -28,6 +28,11 @@ export class AddEntrantComponent implements OnInit {
     nameMatch = true;
     patronymMatch = true;
     surnameMatch = true;
+    idMatch = true;
+    examsMatch = true;
+    educationMatch = true;
+    passportMatch = true;
+    militaryMatch = true;
 
   constructor(private httpService: HttpService) { }
 
@@ -60,10 +65,23 @@ export class AddEntrantComponent implements OnInit {
     }
   }
   checkForm(): void {
-    this.nameMatch = !!this.name.match(this.patternForTextInput);
-    this.patronymMatch = !!this.patronym.match(this.patternForTextInput);
-    this.surnameMatch = !!this.surname.match(this.patternForTextInput);
-
+    this.nameMatch = this.getMatch(this.name, this.patternForTextInput);
+    this.patronymMatch = this.getMatch(this.patronym, this.patternForTextInput);
+    this.surnameMatch = this.getMatch(this.surname, this.patternForTextInput);
+    this.idMatch = this.getMatch(this.identificationCode, this.getPatternForNumberInput(10));
+    this.educationMatch = this.getMatch(this.educationNumber, this.getPatternForNumberInput(8));
+    this.passportMatch = this.getMatch(this.passportNumber, this.getPatternForNumberInput(9));
+    if (this.isElevenGrade) {
+      this.examsMatch = this.getMatch(this.independentExamsNumber, this.getPatternForNumberInput(7));
+      this.militaryMatch = this.getMatch(this.militaryTicketNumber, this.getPatternForNumberInput(10));
+    }
+  }
+  getPatternForNumberInput(amount: number): RegExp {
+    const regex = `[0-9]{${amount}}`;
+    return new RegExp(regex, 'g');
+  }
+  getMatch(value, regex: RegExp): boolean {
+    return value === undefined ? false : !!value.toString().match(regex);
   }
   addEntrant(form: NgForm): void {
     this.checkForm();
