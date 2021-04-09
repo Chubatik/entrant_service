@@ -11,7 +11,7 @@ entrants = [];
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
-    this.httpService.get('/api/view-list').subscribe(
+    this.httpService.getEntrants().subscribe(
       data => {
          this.entrants = data.data;
       }
