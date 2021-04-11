@@ -11,6 +11,7 @@ import {AddEntrantComponent} from './components/add-entrant/add-entrant.componen
 import {ViewEntrantComponent} from './components/view-entrant/view-entrant.component';
 import {FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const appRoutes: Routes = [
   {path: '', component: StartPageComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         CommonModule,
         FormsModule,
-        NgSelectModule
+        NgSelectModule,
+        NgxPaginationModule
     ],
   providers: [],
   bootstrap: [AppComponent]

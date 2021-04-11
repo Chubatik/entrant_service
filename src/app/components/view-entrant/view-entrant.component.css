@@ -1,7 +1,17 @@
+
 .pointer {
   cursor: pointer;
 }
 .overflow{
   overflow-y: scroll;
   height: 70vh;
+}
+pagination-controls {
+  text-align: center;
+}
+.dropdown{
+  padding: 1.5%;
+}
+ng-select{
+  width: 100%;
 }

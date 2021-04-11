@@ -1,9 +1,52 @@
 <div class="container">
-<header class="jumbotron my-4 centered">
+  <div class="row">
+    <div class="col-md-2">
+      <ng-select id="selectPrivilege"
+                 name="privilegeId"
+                 [items]="privileges"
+                 bindLabel="privilege_name"
+                 bindValue="privilege_id"
+                 [(ngModel)]="privilegeId"
+                 placeholder="Пільга" (change)="setFilter()"></ng-select>
+    </div>
+    <div class="col-md-2">
+    <ng-select id="selectSpecialty"
+               [items]="specialties"
+               name="specialtyId"
+               bindLabel="specialty_name"
+               bindValue="specialty_id"
+               [(ngModel)]="specialtyId"
+               placeholder="Спеціальність" (change)="setFilter()"></ng-select>
+    </div>
+    <div class="col-md-2">
+      <ng-select id="isHostel"
+                 name="isHostel"
+                 [items]="hostelOptions"
+                 bindLabel="name"
+                 bindValue="isHostel"
+                 [(ngModel)]="isHostel"
+                 placeholder="Гуртожиток"
+                 (change)="setFilter()"></ng-select>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="inputName"
+             placeholder="Ім'я" name="name" [(ngModel)]="name" (change)="setFilter()">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="inputSurname"
+             name="surname" placeholder="Прізвище" [(ngModel)]="surname" (change)="setFilter()">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="inputPatronym" name="patronym"
+             placeholder="По-батькові" [(ngModel)]="patronym" (change)="setFilter()">
+    </div>
+  </div>
+</div>
+<div class="container">
+<!--<header class="jumbotron centered">
   <h1 class="display-3">Перегляд списку абітурієнтів</h1>
   <p class="lead">Тут ви можете переглядати список абітурієнтів та сортувати список за різними полями(в розробці). Натиснувши на будь-яке поле, ви перейдете до розширеного перегляду інформації про  абітурієнта(в розробці).</p>
-</header>
-  <div class="overflow">
+</header>-->
   <table class="table table-bordered table-hover">
     <thead>
       <tr class="centered">
@@ -14,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let ent of entrants" class="pointer centered">
+    <tr *ngFor="let ent of entrants | paginate: {totalItems: count, itemsPerPage : 10, currentPage: page}" class="pointer centered">
       <td>{{ent.entrant_surname}}</td>
       <td>{{ent.entrant_name}}</td>
       <td>{{ent.entrant_patronym}}</td>
@@ -22,5 +65,8 @@
     </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="changePage($event)"
+                       directionLinks="true"
+                       previousLabel="Назад" nextLabel="Вперед">
+  </pagination-controls>
   </div>
-</div>

@@ -12,3 +12,6 @@ h4 {
 .form-group {
   padding-top: .6%;
 }
+ng-select{
+  width: 100%;
+}

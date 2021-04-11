@@ -3,6 +3,7 @@
 }
 nav{
   background-color: rgb(87, 150, 210);
+  position: inherit;
 }
 .nav-item:hover {
   background-color: rgb(59, 110, 177);

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IEntrant} from '../interfaces/entrant/entrant';
+import {IEntrantFilter} from '../interfaces/filter/entrant-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ import {IEntrant} from '../interfaces/entrant/entrant';
 export class HttpService {
   constructor(private httpClient: HttpClient) {
   }
-  public getEntrants(): Observable<any>{
-    return this.httpClient.get('/api/view-list');
+  public getEntrants(page: number, filter?: IEntrantFilter): Observable<any>{
+    const f = filter === undefined ? '{}' : JSON.stringify(filter);
+    return this.httpClient.get(`/api/view-list?page=${page}&filter=${f}`);
   }
   public getPrivAndSpec(): Observable<any>{
     return this.httpClient.get('/api/add-form');
