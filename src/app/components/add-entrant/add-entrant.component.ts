@@ -45,8 +45,8 @@ export class AddEntrantComponent implements OnInit {
   getPrivAndSpec(): void {
     this.httpService.getPrivAndSpec().subscribe(
       data => {
-        this.privileges = data.data[0];
-        this.specialties = data.data[1];
+        this.privileges = data.data.privileges;
+        this.specialties = data.data.specialties;
         this.addNonPrivilegeCase();
       }
     );

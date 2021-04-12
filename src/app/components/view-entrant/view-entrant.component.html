@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-md-2">
       <ng-select id="selectPrivilege"
@@ -29,17 +30,26 @@
                  (change)="setFilter()"></ng-select>
     </div>
     <div class="col-md-2">
+      <ng-select id="value" name="value"
+                 [items]="years"
+                 [(ngModel)]="year"
+                 bindLabel="value"
+                 bindValue="value"
+                 placeholder="Рік подачі"
+                 (change)="setFilter()"></ng-select>
+    </div>
+    <div class="col-md-2">
       <input type="text" class="form-control" id="inputName"
-             placeholder="Ім'я" name="name" [(ngModel)]="name" (change)="setFilter()">
+             placeholder="Ім'я" name="name" [(ngModel)]="name" (keyup)="setFilter()">
     </div>
     <div class="col-md-2">
       <input type="text" class="form-control" id="inputSurname"
-             name="surname" placeholder="Прізвище" [(ngModel)]="surname" (change)="setFilter()">
+             name="surname" placeholder="Прізвище" [(ngModel)]="surname" (keyup)="setFilter()">
     </div>
-    <div class="col-md-2">
+    <!--<div class="col-md-2">
       <input type="text" class="form-control" id="inputPatronym" name="patronym"
-             placeholder="По-батькові" [(ngModel)]="patronym" (change)="setFilter()">
-    </div>
+             placeholder="По-батькові" [(ngModel)]="patronym" (keyup)="setFilter()">
+    </div>-->
   </div>
 </div>
 <div class="container">

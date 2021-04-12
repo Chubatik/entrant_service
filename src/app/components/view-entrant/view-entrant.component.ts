@@ -14,6 +14,7 @@ entrants = [];
   count: number;
   privileges = [];
   specialties = [];
+  years = [];
   specialtyId: number;
   privilegeId: number;
   hostelOptions = [{isHostel: true , name: 'Так'}, {isHostel: false , name: 'Ні'}];
@@ -21,8 +22,9 @@ entrants = [];
   name: string;
   surname: string;
   patronym: string;
+  year: number;
   filter: IEntrantFilter = {isHostel: null, name: null,
-    patronym: null, privilegeId: null, specialtyId: null, surname: null};
+    privilegeId: null, specialtyId: null, surname: null, year: null}; // patronym: null,
   ngOnInit(): void {
     this.httpService.getEntrants( this.page ).subscribe(
       data => {
@@ -34,10 +36,19 @@ entrants = [];
   getPrivAndSpec(): void {
     this.httpService.getPrivAndSpec().subscribe(
       data => {
-        this.privileges = data.data[0];
-        this.specialties = data.data[1];
+        this.privileges = data.data.privileges;
+        this.specialties = data.data.specialties;
         this.addNonPrivilegeCase();
+        this.years = this.getYears(data.data.years);
       });
+  }
+  getYears(years): any[] {
+    const ys = [];
+    for (let i = 0; i < years.length; i++) {
+      const y = { id : i, value : years[i].years };
+      ys.push(y);
+    }
+    return ys;
   }
   addNonPrivilegeCase(): void {
     const nonPrivilegeCase = {
@@ -54,12 +65,14 @@ entrants = [];
       });
   }
   setFilter(): void{
+    console.log(this.year);
     this.filter.name = this.name;
     this.filter.surname = this.surname;
     this.filter.isHostel = this.isHostel;
-    this.filter.patronym = this.patronym;
+    // this.filter.patronym = this.patronym;
     this.filter.privilegeId = this.privilegeId;
     this.filter.specialtyId = this.specialtyId;
+    this.filter.year = this.year;
     this.setNullValue(this.filter);
     this.httpService.getEntrants( this.page === 0 ? 0 : this.page - 1 , this.filter ).subscribe(
       data => {
