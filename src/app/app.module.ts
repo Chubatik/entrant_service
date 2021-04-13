@@ -12,11 +12,13 @@ import {ViewEntrantComponent} from './components/view-entrant/view-entrant.compo
 import {FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { EntrantProfileComponent } from './components/entrant-profile/entrant-profile.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartPageComponent},
   {path: 'add', component: AddEntrantComponent},
-  {path: 'view', component: ViewEntrantComponent}
+  {path: 'view', component: ViewEntrantComponent},
+  {path: 'profile/:id', component: EntrantProfileComponent}
 ];
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent,
     AddEntrantComponent,
-    ViewEntrantComponent
+    ViewEntrantComponent,
+    EntrantProfileComponent,
   ],
     imports: [
         BrowserModule,

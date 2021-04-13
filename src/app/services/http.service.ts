@@ -20,4 +20,7 @@ export class HttpService {
   public addEntrant(entrant: IEntrant): Observable<any>{
     return this.httpClient.post('/api/add-entrant', {entrant});
   }
+  public getEntrantInfo(entrantId: number): Observable<any>{
+    return this.httpClient.get(`/api/get-entrant?entrantId=${entrantId}`);
+  }
 }
