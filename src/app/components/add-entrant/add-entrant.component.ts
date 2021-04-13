@@ -34,7 +34,10 @@ export class AddEntrantComponent implements OnInit {
       examsMatch : true,
       educationMatch : true,
       passportMatch : true,
-      militaryMatch : true
+      militaryMatch : true,
+      hostel: true,
+      spec: true,
+      priv: true,
     };
 
   constructor(private httpService: HttpService) { }
@@ -53,13 +56,14 @@ export class AddEntrantComponent implements OnInit {
   }
   addNonPrivilegeCase(): void {
     const nonPrivilegeCase = {
-      privilege_id: null,
+      privilege_id: -1,
       privilege_name: 'Немає пільг'
     };
     this.privileges.push(nonPrivilegeCase);
   }
   checkNonPrivilegeCase(): void {
-    this.isPrivilege = this.privilegeId !== null && this.privilegeId !== undefined;
+    this.isPrivilege = this.privilegeId !== -1 && this.privilegeId !== undefined;
+    this.privilegeId = this.privilegeId === -1 ? this.privilegeId = null : this.privilegeId;
   }
   checkNonElevenGradeCase(): void {
     if (this.isElevenGrade === false) {
@@ -74,10 +78,16 @@ export class AddEntrantComponent implements OnInit {
     this.match.idMatch = this.getMatch(this.identificationCode, this.getPatternForNumberInput(10));
     this.match.educationMatch = this.getMatch(this.educationNumber, this.getPatternForNumberInput(8));
     this.match.passportMatch = this.getMatch(this.passportNumber, this.getPatternForNumberInput(9));
+    this.match.hostel = this.getMatchForSelect(this.isHostel);
+    this.match.spec = this.getMatchForSelect(this.specialtyId);
+    this.match.priv = this.getMatchForSelect(this.privilegeId);
     if (this.isElevenGrade) {
       this.match.examsMatch = this.getMatch(this.independentExamsNumber, this.getPatternForNumberInput(7));
       this.match.militaryMatch = this.getMatch(this.militaryTicketNumber, this.getPatternForNumberInput(10));
     }
+  }
+  getMatchForSelect(value): boolean {
+    return value !== undefined && value !== null;
   }
   getPatternForNumberInput(amount: number): RegExp {
     const regex = `[0-9]{${amount}}`;
@@ -126,6 +136,6 @@ export class AddEntrantComponent implements OnInit {
         }, error => {}
       );
     }
-    // form.reset();
+    form.reset();
   }
 }

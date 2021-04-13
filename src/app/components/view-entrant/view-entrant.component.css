@@ -1,17 +1,17 @@
-
 .pointer {
   cursor: pointer;
 }
-.overflow{
-  overflow-y: scroll;
-  height: 70vh;
-}
 pagination-controls {
   text-align: center;
+  padding-bottom: 1.5%;
 }
 .dropdown{
   padding: 1.5%;
 }
 ng-select{
   width: 100%;
+}
+.not-found {
+  font-size: 30px;
+  padding: 19%;
 }

@@ -57,7 +57,7 @@
   <h1 class="display-3">Перегляд списку абітурієнтів</h1>
   <p class="lead">Тут ви можете переглядати список абітурієнтів та сортувати список за різними полями(в розробці). Натиснувши на будь-яке поле, ви перейдете до розширеного перегляду інформації про  абітурієнта(в розробці).</p>
 </header>-->
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover" *ngIf="entrants.length!==0">
     <thead>
       <tr class="centered">
         <th>Прізвище</th>
@@ -75,7 +75,11 @@
     </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="changePage($event)"
+  <div class="centered not-found" *ngIf="entrants.length===0">
+    <h2>Абітурєнтів не знайдено.</h2>
+    <p>Спробуйте змінити фільтри</p>
+  </div>
+  <pagination-controls *ngIf="entrants.length!==0" (pageChange)="changePage($event)"
                        directionLinks="true"
                        previousLabel="Назад" nextLabel="Вперед">
   </pagination-controls>
