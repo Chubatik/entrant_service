@@ -13,6 +13,9 @@ import {FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { EntrantProfileComponent } from './components/entrant-profile/entrant-profile.component';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   {path: '', component: StartPageComponent},
@@ -37,7 +40,12 @@ const appRoutes: Routes = [
         CommonModule,
         FormsModule,
         NgSelectModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+          timeOut: 10000,
+          positionClass: 'toast-top-left'
+        })
     ],
   providers: [],
   bootstrap: [AppComponent]

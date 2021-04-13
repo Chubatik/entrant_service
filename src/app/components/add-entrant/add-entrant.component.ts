@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {NgForm} from '@angular/forms';
 import {IEntrant} from '../../interfaces/entrant/entrant';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-entrant',
@@ -39,8 +40,8 @@ export class AddEntrantComponent implements OnInit {
       spec: true,
       priv: true,
     };
-
-  constructor(private httpService: HttpService) { }
+  title = 'Додавання абітурієнта';
+  constructor(private httpService: HttpService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.getPrivAndSpec();
@@ -51,6 +52,9 @@ export class AddEntrantComponent implements OnInit {
         this.privileges = data.data.privileges;
         this.specialties = data.data.specialties;
         this.addNonPrivilegeCase();
+        this.toastrService.info('Уважно перевіряйте дані, які вводяться', this.title);
+      }, error => {
+        this.toastrService.error('Помилка при завантаженні спеціальностей та пільг', this.title);
       }
     );
   }
@@ -132,10 +136,14 @@ export class AddEntrantComponent implements OnInit {
     if (this.checkMatch()){
       this.httpService.addEntrant(entrant).subscribe(
         (data) => {
-
-        }, error => {}
+          this.toastrService.success('Абітурієнта успішно додано', this.title);
+          form.reset();
+        }, error => {
+          this.toastrService.error('Помилка при додаванні абітурієнта', this.title);
+        }
       );
+    } else {
+      this.toastrService.error('Перевірте форму ще раз', this.title);
     }
-    form.reset();
   }
 }
