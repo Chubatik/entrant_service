@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {IEntrantFilter} from '../../interfaces/filter/entrant-filter';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-entrant',
@@ -9,7 +10,7 @@ import {IEntrantFilter} from '../../interfaces/filter/entrant-filter';
 })
 export class ViewEntrantComponent implements OnInit {
 entrants = [];
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private toastrService: ToastrService ) { }
   page = 0;
   count: number;
   privileges = [];
@@ -23,6 +24,7 @@ entrants = [];
   surname: string;
   patronym: string;
   year: number;
+  title = 'Список абітурієнтів';
   filter: IEntrantFilter = {isHostel: null, name: null,
     privilegeId: null, specialtyId: null, surname: null, year: null}; // patronym: null,
   ngOnInit(): void {
@@ -30,6 +32,8 @@ entrants = [];
       data => {
          this.entrants = data.data.entrants;
          this.count = data.data.count.countEntrant;
+      }, error => {
+        this.toastrService.error('Помилка при завантаженні абітурієнтів', this.title);
       });
     this.getPrivAndSpec();
   }
@@ -40,6 +44,8 @@ entrants = [];
         this.specialties = data.data.specialties;
         this.addNonPrivilegeCase();
         this.years = this.getYears(data.data.years);
+      }, error => {
+        this.toastrService.error('Помилка при завантаженні спеціальностей та пільг', this.title);
       });
   }
   getYears(years): any[] {
@@ -62,10 +68,11 @@ entrants = [];
     this.httpService.getEntrants(this.page - 1, this.filter).subscribe(
       (data) => {
         this.entrants = data.data.entrants;
+      }, error => {
+        this.toastrService.error('Помилка при завантаженні абітурієнтів', this.title);
       });
   }
   setFilter(): void{
-    console.log(this.year);
     this.filter.name = this.name;
     this.filter.surname = this.surname;
     this.filter.isHostel = this.isHostel;
@@ -78,6 +85,8 @@ entrants = [];
       data => {
         this.entrants = data.data.entrants;
         this.count = data.data.count.countEntrant;
+      }, error => {
+        this.toastrService.error('Помилка при завантаженні абітурієнтів', this.title);
       });
   }
   setNullValue(obj): void {
