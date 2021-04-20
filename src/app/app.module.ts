@@ -14,14 +14,16 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { EntrantProfileComponent } from './components/entrant-profile/entrant-profile.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {ChartsModule} from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
+import { StatisticComponent } from './components/statistic/statistic.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartPageComponent},
   {path: 'add', component: AddEntrantComponent},
   {path: 'view', component: ViewEntrantComponent},
-  {path: 'profile/:id', component: EntrantProfileComponent}
+  {path: 'profile/:id', component: EntrantProfileComponent},
+  {path: 'statistic', component: StatisticComponent}
 ];
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
     AddEntrantComponent,
     ViewEntrantComponent,
     EntrantProfileComponent,
+    StatisticComponent,
   ],
     imports: [
         BrowserModule,
@@ -45,7 +48,8 @@ const appRoutes: Routes = [
         ToastrModule.forRoot({
           timeOut: 10000,
           positionClass: 'toast-top-left'
-        })
+        }),
+        ChartsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
