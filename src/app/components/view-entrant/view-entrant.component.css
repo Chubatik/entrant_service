@@ -37,3 +37,10 @@ ng-select{
 .center-filter {
   justify-content: center;
 }
+.colored-border {
+  border-color: lightgrey;
+  border-style: solid;
+  border-radius: 10px;
+  margin: 0;
+  padding: inherit;
+}
