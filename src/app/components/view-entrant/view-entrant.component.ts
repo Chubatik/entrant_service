@@ -10,6 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class ViewEntrantComponent implements OnInit {
 entrants = [];
+  isFilters = false;
   constructor(private httpService: HttpService, private toastrService: ToastrService ) { }
   page = 0;
   count: number;
@@ -95,5 +96,9 @@ entrants = [];
         obj[i] = null;
       }
     }
+  }
+
+  toggleFilters(): void {
+    this.isFilters = !this.isFilters;
   }
 }

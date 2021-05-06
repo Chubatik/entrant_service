@@ -15,3 +15,25 @@ ng-select{
   font-size: 30px;
   padding: 19%;
 }
+.filter-untouched {
+  width: 25px;
+  height: 25px;
+  background-image: url("src/assets/icons/filter-circle.svg");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  padding: 1.5%;
+}
+.filter-touched {
+  width: 25px;
+  height: 25px;
+  background-image: url("src/assets/icons/filter-circle-fill.svg");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  padding: 1.5%;
+}
+.filter:hover {
+  background-image: url("src/assets/icons/filter-circle-fill.svg");
+}
+.center-filter {
+  justify-content: center;
+}

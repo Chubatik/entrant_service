@@ -8,7 +8,7 @@
     <p class="lead">Номер паспорту: {{entrant.passport_number}}</p>
     <p class="lead">Ідентифікаційний код: {{entrant.identification_code}}</p>
     <p class="lead">Номер свідоцтва про здобуття базової середньої освіти: {{entrant.education_number}}</p>
-    <p class="lead">Закінчив 11 клас: {{entrant.is_eleven_grade === 0 ? 'ні' : 'так'}}</p>
+    <p class="lead" *ngIf="entrant.is_eleven_grade">Закінчив 11 клас: так</p>
     <p class="lead" *ngIf="entrant.is_eleven_grade">Номер сертифікату ЗНО: {{entrant.independent_exams_number}}</p>
     <p class="lead" *ngIf="entrant.is_eleven_grade">Номер військового квитка: {{entrant.military_ticket_number}}</p>
     <p class="lead">

@@ -1,6 +1,11 @@
 <div class="container">
+  <div class="row center-filter">
+    <span class="filter" (click)="toggleFilters()"
+          [ngClass]="{'filter-touched' : isFilters,'filter-untouched': !isFilters}"></span>
+    <span>Натисніть, щоб відкрити або закрити фільтри </span>
+  </div>
 
-  <div class="row">
+  <div class="row" *ngIf="isFilters">
     <div class="col-md-2">
       <ng-select id="selectPrivilege"
                  name="privilegeId"
