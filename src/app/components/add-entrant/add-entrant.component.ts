@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from '../../services/http.service';
+import {HttpService} from '../../services/http/http.service';
 import {NgForm} from '@angular/forms';
 import {IEntrant} from '../../interfaces/entrant/entrant';
 import {ToastrService} from 'ngx-toastr';

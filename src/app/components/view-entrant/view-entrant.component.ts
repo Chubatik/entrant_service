@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from '../../services/http.service';
+import {HttpService} from '../../services/http/http.service';
 import {IEntrantFilter} from '../../interfaces/filter/entrant-filter';
 import {ToastrService} from 'ngx-toastr';
-
+import * as expMethods from '../../shared/methods/methods';
 @Component({
   selector: 'app-view-entrant',
   templateUrl: './view-entrant.component.html',
@@ -28,6 +28,7 @@ entrants = [];
   title = 'Список абітурієнтів';
   filter: IEntrantFilter = {isHostel: null, name: null,
     privilegeId: null, specialtyId: null, surname: null, year: null}; // patronym: null,
+
   ngOnInit(): void {
     this.httpService.getEntrants( this.page ).subscribe(
       data => {
@@ -41,29 +42,14 @@ entrants = [];
   getPrivAndSpec(): void {
     this.httpService.getPrivAndSpec().subscribe(
       data => {
-        this.privileges = data.data.privileges;
+        this.privileges = expMethods.addNonPrivilegeCase(data.data.privileges);
         this.specialties = data.data.specialties;
-        this.addNonPrivilegeCase();
-        this.years = this.getYears(data.data.years);
+        this.years = expMethods.getYearsObj(data.data.years);
       }, error => {
         this.toastrService.error('Помилка при завантаженні спеціальностей та пільг', this.title);
       });
   }
-  getYears(years): any[] {
-    const ys = [];
-    for (let i = 0; i < years.length; i++) {
-      const y = { id : i, value : years[i].years };
-      ys.push(y);
-    }
-    return ys;
-  }
-  addNonPrivilegeCase(): void {
-    const nonPrivilegeCase = {
-      privilege_id: 0,
-      privilege_name: 'Немає пільг'
-    };
-    this.privileges.push(nonPrivilegeCase);
-  }
+
   changePage(p: number): void {
     this.page = p;
     this.httpService.getEntrants(this.page - 1, this.filter).subscribe(
@@ -81,7 +67,7 @@ entrants = [];
     this.filter.privilegeId = this.privilegeId;
     this.filter.specialtyId = this.specialtyId;
     this.filter.year = this.year;
-    this.setNullValue(this.filter);
+    expMethods.setNullValue(this.filter);
     this.httpService.getEntrants( this.page === 0 ? 0 : this.page - 1 , this.filter ).subscribe(
       data => {
         this.entrants = data.data.entrants;
@@ -89,13 +75,6 @@ entrants = [];
       }, error => {
         this.toastrService.error('Помилка при завантаженні абітурієнтів', this.title);
       });
-  }
-  setNullValue(obj): void {
-    for (const i in obj) {
-      if (obj.hasOwnProperty(i) && obj[i] === undefined){
-        obj[i] = null;
-      }
-    }
   }
 
   toggleFilters(): void {
