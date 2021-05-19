@@ -5,6 +5,7 @@ import { Label } from 'ng2-charts';
 import {HttpService} from '../../services/http/http.service';
 import {ToastrService} from 'ngx-toastr';
 import * as expMethods from '../../shared/methods/methods';
+import {StatisticService} from '../../services/statistic/statistic.service';
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
@@ -21,14 +22,17 @@ export class StatisticComponent implements OnInit {
   ];
   title = 'Статистика';
   hostelOptions = [{isHostel: true , name: 'Так'}, {isHostel: false , name: 'Ні'}];
-  specialtyId: number[];
-  privilegeId: number[];
+  specialtyId: number;
+  privilegeId: number;
   isHostel: boolean;
-  year: number[];
+  year: number;
   privileges = [];
   specialties = [];
   years = [];
-  constructor(private httpService: HttpService, private toastrService: ToastrService) { }
+  entrants;
+  constructor(private httpService: HttpService,
+              private toastrService: ToastrService,
+              private statisticService: StatisticService) { }
 
   ngOnInit(): void {
     this.getPrivAndSpec();
@@ -38,21 +42,23 @@ export class StatisticComponent implements OnInit {
   getStatistic(): void {
     this.httpService.getStatisticData().subscribe(
       (data) => {
-
+        this.entrants = data.data;
+        this.barChartData = this.statisticService.setBarChartData(this.entrants, this.years, this.barChartLabels);
       }, error => {
         this.toastrService.error('Помилка при завантаженні статистичних даних', this.title);
       });
   }
+
   setChartOptions(): void {
     this.barChartOptions = {
       legend: {
-        display: false
+        display: true
       },
       scaleShowVerticalLines: true,
       responsive: true,
       tooltips: {
         mode: 'x',
-        intersect: true,
+        intersect: false,
         callbacks: {
           footer: (tooltipItems, data) => {
           },
@@ -77,15 +83,11 @@ export class StatisticComponent implements OnInit {
   getPrivAndSpec(): void {
     this.httpService.getPrivAndSpec().subscribe(
       data => {
-        this.privileges = expMethods.addNonPrivilegeCase(data.data.privileges);
         this.specialties = data.data.specialties;
-        this.years = expMethods.getYearsObj(data.data.years);
-        const label = expMethods.getYearsArr(data.data.years);
-        this.barChartLabels = [label[0]]; // [label[label.length - 1]];
+        this.years = expMethods.getYearsArr(data.data.years);
+        this.barChartLabels = expMethods.getSpecsArr(this.specialties);
       }, error => {
         this.toastrService.error('Помилка при завантаженні спеціальностей та пільг', this.title);
       });
-  }
-  setFilter(): void {
   }
 }

@@ -60,14 +60,14 @@ entrants = [];
       });
   }
   setFilter(): void{
-    this.filter.name = this.name;
-    this.filter.surname = this.surname;
-    this.filter.isHostel = this.isHostel;
+    this.filter.name = this.name || null;
+    this.filter.surname = this.surname || null;
+    this.filter.isHostel = this.isHostel || null;
     // this.filter.patronym = this.patronym;
-    this.filter.privilegeId = this.privilegeId;
-    this.filter.specialtyId = this.specialtyId;
-    this.filter.year = this.year;
-    expMethods.setNullValue(this.filter);
+    this.filter.privilegeId = this.privilegeId || null;
+    this.filter.specialtyId = this.specialtyId || null;
+    this.filter.year = this.year || null;
+    // expMethods.setNullValue(this.filter);
     this.httpService.getEntrants( this.page === 0 ? 0 : this.page - 1 , this.filter ).subscribe(
       data => {
         this.entrants = data.data.entrants;

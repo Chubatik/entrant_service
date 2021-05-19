@@ -16,7 +16,15 @@ export function getYearsArr(years): any[] {
   }
   return ys;
 }
-
+export function getSpecsArr(specs): any[] {
+  const spc = [];
+  // tslint:disable-next-line:prefer-for-of
+  for (let i = 0; i < specs.length; i++) {
+    const y = specs[i].specialty_name;
+    spc.push(y);
+  }
+  return spc;
+}
 export function addNonPrivilegeCase(privileges): any[] {
   const nonPrivilegeCase = {
     privilege_id: 0,
