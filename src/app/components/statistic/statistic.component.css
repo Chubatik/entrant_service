@@ -1,6 +1,7 @@
 canvas {
-  padding-bottom: 20px;
+  padding: 20px;
 }
-div {
+.chart {
+  justify-content: center;
   margin: 5%;
 }

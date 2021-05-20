@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IEntrant} from '../interfaces/entrant/entrant';
-import {IEntrantFilter} from '../interfaces/filter/entrant-filter';
+import {IEntrant} from '../../interfaces/entrant/entrant';
+import {IEntrantFilter} from '../../interfaces/filter/entrant-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,8 @@ export class HttpService {
   }
   public getEntrantInfo(entrantId: number): Observable<any>{
     return this.httpClient.get(`/api/get-entrant?entrantId=${entrantId}`);
+  }
+  public getStatisticData(): Observable<any>{
+    return this.httpClient.get(`/api/statistic`);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HttpService} from '../../services/http.service';
+import {HttpService} from '../../services/http/http.service';
 import {IEntrantProfile} from '../../interfaces/entrant/entrant';
 import {ToastrService} from 'ngx-toastr';
 
