@@ -6,7 +6,7 @@ import {sortObj} from '../../shared/methods/methods';
 })
 export class StatisticService {
   constructor() { }
-  public createData(data, years, specs): object {
+  public createData(data, years): object {
     const res = this.formObj(years);
     for (let i = 0; i < data.length; i++) {
       const year = data[i].year;
@@ -30,14 +30,16 @@ export class StatisticService {
     return res;
   }
   public setBarChartData(data, years, specs): any[] {
-    let res = this.createData(data, years, specs);
+    let res = this.createData(data, years);
+    const tooltipData = [];
     const barChartData = [];
     years.forEach(year => {
         this.checkZeros(res[year][0], specs);
         this.checkZeros(res[year][1], specs);
+        tooltipData.push(Object.values(sortObj(res[year][1])));
         barChartData.push({data: Object.values(sortObj(res[year][0])), label: year});
     });
-    return barChartData;
+    return [barChartData, tooltipData];
   }
 
   public checkZeros(resByYear, specs): void {

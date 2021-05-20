@@ -21,15 +21,12 @@ export class StatisticComponent implements OnInit {
     { data: [28, 48], label: 'Series B' }
   ];
   title = 'Статистика';
-  hostelOptions = [{isHostel: true , name: 'Так'}, {isHostel: false , name: 'Ні'}];
-  specialtyId: number;
-  privilegeId: number;
-  isHostel: boolean;
-  year: number;
   privileges = [];
   specialties = [];
   years = [];
   entrants;
+  chartData = [];
+  tooltipData = [];
   constructor(private httpService: HttpService,
               private toastrService: ToastrService,
               private statisticService: StatisticService) { }
@@ -43,7 +40,9 @@ export class StatisticComponent implements OnInit {
     this.httpService.getStatisticData().subscribe(
       (data) => {
         this.entrants = data.data;
-        this.barChartData = this.statisticService.setBarChartData(this.entrants, this.years, this.barChartLabels);
+        this.chartData = this.statisticService.setBarChartData(this.entrants, this.years, this.barChartLabels);
+        this.barChartData = this.chartData[0];
+        this.tooltipData = this.chartData[1];
       }, error => {
         this.toastrService.error('Помилка при завантаженні статистичних даних', this.title);
       });
@@ -61,6 +60,7 @@ export class StatisticComponent implements OnInit {
         intersect: false,
         callbacks: {
           footer: (tooltipItems, data) => {
+           return `З пільгами: ${this.tooltipData[tooltipItems[0].datasetIndex][tooltipItems[0].index]}`;
           },
         },
       },
