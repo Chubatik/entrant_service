@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpService} from '../http/http.service';
+import {sortObj} from '../../shared/methods/methods';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticService {
   constructor() { }
-  public createData(data, years): object {
+  public createData(data, years, specs): object {
     const res = this.formObj(years);
     for (let i = 0; i < data.length; i++) {
       const year = data[i].year;
@@ -27,18 +27,26 @@ export class StatisticService {
          }
       }
     }
-    console.log(res);
     return res;
   }
   public setBarChartData(data, years, specs): any[] {
-    let res = this.createData(data, years);
+    let res = this.createData(data, years, specs);
     const barChartData = [];
     years.forEach(year => {
-        barChartData.push({data: Object.values(res[year][0]), label: year});
+        this.checkZeros(res[year][0], specs);
+        this.checkZeros(res[year][1], specs);
+        barChartData.push({data: Object.values(sortObj(res[year][0])), label: year});
     });
     return barChartData;
   }
 
+  public checkZeros(resByYear, specs): void {
+    specs.forEach(s => {
+      if (!resByYear.hasOwnProperty(s)) {
+        resByYear[s] = 0;
+      }
+    });
+  }
   public formObj(years): object {
     let res = {};
     for (let i = 0; i < years.length; i++) {

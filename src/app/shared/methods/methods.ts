@@ -41,3 +41,10 @@ export function setNullValue(obj): void {
     }
   }
 }
+
+export function sortObj(obj): object {
+  return Object.keys(obj).sort().reduce((result, key) => {
+    result[key] = obj[key];
+    return result;
+  }, {});
+}
