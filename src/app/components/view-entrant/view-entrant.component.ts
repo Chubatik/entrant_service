@@ -3,6 +3,8 @@ import {HttpService} from '../../services/http/http.service';
 import {IEntrantFilter} from '../../interfaces/filter/entrant-filter';
 import {ToastrService} from 'ngx-toastr';
 import * as expMethods from '../../shared/methods/methods';
+import {getAccess} from '../../shared/methods/methods';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-view-entrant',
   templateUrl: './view-entrant.component.html',
@@ -11,7 +13,8 @@ import * as expMethods from '../../shared/methods/methods';
 export class ViewEntrantComponent implements OnInit {
 entrants = [];
   isFilters = false;
-  constructor(private httpService: HttpService, private toastrService: ToastrService ) { }
+  constructor(private httpService: HttpService, private toastrService: ToastrService,
+              public router: Router ) { }
   page = 0;
   count: number;
   privileges = [];
@@ -60,13 +63,14 @@ entrants = [];
       });
   }
   setFilter(): void{
-    this.filter.name = this.name || null;
-    this.filter.surname = this.surname || null;
-    this.filter.isHostel = this.isHostel || null;
+    this.filter.name = this.name;
+    this.filter.surname = this.surname;
+    this.filter.isHostel = this.isHostel;
     // this.filter.patronym = this.patronym;
-    this.filter.privilegeId = this.privilegeId || null;
-    this.filter.specialtyId = this.specialtyId || null;
-    this.filter.year = this.year || null;
+    this.filter.privilegeId = this.privilegeId;
+    this.filter.specialtyId = this.specialtyId;
+    this.filter.year = this.year;
+    console.log(this.filter.isHostel)
     // expMethods.setNullValue(this.filter);
     this.httpService.getEntrants( this.page === 0 ? 0 : this.page - 1 , this.filter ).subscribe(
       data => {
@@ -79,5 +83,12 @@ entrants = [];
 
   toggleFilters(): void {
     this.isFilters = !this.isFilters;
+  }
+  goToPage(route, id): void {
+    if (!getAccess()) {
+      this.toastrService.warning('У вас немає доступу', this.title);
+    } else {
+      this.router.navigate([`/${route}/${id}`]);
+    }
   }
 }

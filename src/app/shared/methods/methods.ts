@@ -48,3 +48,7 @@ export function sortObj(obj): object {
     return result;
   }, {});
 }
+
+export function getAccess(): boolean {
+  return JSON.parse(localStorage.getItem('access')).access;
+}

@@ -1,37 +1,38 @@
 <div class="container">
-
-  <!-- Jumbotron Header -->
   <header class="jumbotron">
     <h1 class="display-3">Сервіс для абітурієнтів ВТК</h1>
     <p class="lead">Тут ви можете додавати та переглядати вступників до Вінницького Технічного Коледжу</p>
   </header>
-
-  <!-- Page Features -->
-  <div class="row text-center">
-
-    <div class="col-lg-6 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="assets/images/entrant_1.jpeg" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Додати абітурієнта</h4>
+  <div class="container px-4 py-5" id="featured-3">
+    <div class="pb-2 border-bottom"></div>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
         </div>
-        <div class="card-footer">
-          <a routerLink="/add" class="btn btn-primary">Перейти до форми</a>
-        </div>
+        <h2>Додати абітурієнта</h2>
+        <p>Перевірте наявність всіх необхідних документів.</p>
+        <button class="btn btn-primary" (click)="goToPage('add')">
+          Перейти до форми
+        </button>
       </div>
-    </div>
-
-    <div class="col-lg-6 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="assets/images/entrant_2.jpeg" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Переглянути список абітурієнтів</h4>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
         </div>
-        <div class="card-footer">
-          <a routerLink="/view" class="btn btn-primary">Перейти до списку</a>
+        <h2>Список абітурієнтів</h2>
+        <p>Для швидкого пошуку використовуйте фільтри.</p>
+        <button routerLink="/view" class="btn btn-primary">
+          Перейти до списку
+        </button>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
         </div>
+        <h2>Статистика</h2>
+        <p>Вичерпна інформація про кількість абітурієнтів.</p>
+        <button routerLink="/statistic" class="btn btn-primary">
+          Перейти до статистики
+        </button>
       </div>
     </div>
   </div>
-
 </div>

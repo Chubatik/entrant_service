@@ -10,7 +10,14 @@ html,body {
   min-height: 100%;
   margin: 0 auto -42px;
 }
-
+.btn-primary {
+  background-color: rgb(87, 150, 210);
+  border-color: rgb(87, 150, 210);
+}
+.btn-primary:hover {
+  background-color : rgb(59, 110, 177);
+  border-color: rgb(59, 110, 177);
+}
 .link {
   color: white;
 }

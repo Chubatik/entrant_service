@@ -77,7 +77,8 @@
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let ent of entrants | paginate: {totalItems: count, itemsPerPage : 10, currentPage: page}" class="pointer centered" routerLink="/profile/{{ent.entrant_id}}">
+    <tr *ngFor="let ent of entrants | paginate: {totalItems: count, itemsPerPage : 10, currentPage: page}" class="pointer centered"
+        (click)="goToPage('profile', ent.entrant_id)">
       <td>{{ent.entrant_surname}}</td>
       <td>{{ent.entrant_name}}</td>
       <td>{{ent.entrant_patronym}}</td>

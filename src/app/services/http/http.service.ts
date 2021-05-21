@@ -26,4 +26,7 @@ export class HttpService {
   public getStatisticData(): Observable<any>{
     return this.httpClient.get(`/api/statistic`);
   }
+  public getAccess(pass: string): Observable<any>{
+    return this.httpClient.get(`/api/access?pass=${pass}`);
+  }
 }

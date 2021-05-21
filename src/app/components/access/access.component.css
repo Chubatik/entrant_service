@@ -1,0 +1,19 @@
+.access-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.link-inverse {
+  cursor: pointer;
+  color: rgb(87, 150, 210);
+}
+.link-inverse:hover {
+  color: rgb(59, 110, 177);
+}
+.form-control {
+  text-align: center;
+}
+.form-text {
+  margin: .25rem;
+}

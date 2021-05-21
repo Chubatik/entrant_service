@@ -17,12 +17,16 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ChartsModule} from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { StatisticComponent } from './components/statistic/statistic.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccessComponent } from './components/access/access.component';
+import {AccessGuard} from './guards/access.guard';
 
 const appRoutes: Routes = [
-  {path: '', component: StartPageComponent},
-  {path: 'add', component: AddEntrantComponent},
+  {path: '', component: AccessComponent},
+  {path: 'start-page', component: StartPageComponent},
+  {path: 'add', component: AddEntrantComponent, canActivate: [AccessGuard]},
   {path: 'view', component: ViewEntrantComponent},
-  {path: 'profile/:id', component: EntrantProfileComponent},
+  {path: 'profile/:id', component: EntrantProfileComponent, canActivate: [AccessGuard]},
   {path: 'statistic', component: StatisticComponent}
 ];
 @NgModule({
@@ -35,6 +39,7 @@ const appRoutes: Routes = [
     ViewEntrantComponent,
     EntrantProfileComponent,
     StatisticComponent,
+    AccessComponent,
   ],
     imports: [
         BrowserModule,
@@ -49,9 +54,10 @@ const appRoutes: Routes = [
           timeOut: 10000,
           positionClass: 'toast-top-left'
         }),
-        ChartsModule
+        ChartsModule,
+        ModalModule.forRoot()
     ],
-  providers: [],
+  providers: [AccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

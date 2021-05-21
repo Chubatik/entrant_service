@@ -12,16 +12,19 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link link" href="#">Головна</a>
+          <a class="nav-link link" routerLink="/start-page">Головна</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link" routerLink="/add">Додати</a>
+          <a class="nav-link link" (click)="goToPage('add')">Додати</a>
         </li>
         <li class="nav-item">
           <a class="nav-link link" routerLink="/view">Переглянути</a>
         </li>
         <li class="nav-item">
           <a class="nav-link link" routerLink="/statistic">Статистика</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link" routerLink="/">Авторизація</a>
         </li>
       </ul>
     </div>
