@@ -60,7 +60,10 @@ export class StatisticComponent implements OnInit {
         intersect: false,
         callbacks: {
           footer: (tooltipItems, data) => {
-           return `З пільгами: ${this.tooltipData[tooltipItems[0].datasetIndex][tooltipItems[0].index]}`;
+            const index = tooltipItems[0].index;
+            const datasetIndex = tooltipItems[0].datasetIndex;
+            const countWithPrivs = this.tooltipData[datasetIndex][index];
+            return countWithPrivs === 0 ? 'Без пільг' : `З пільгами: ${countWithPrivs}`;
           },
         },
       },
