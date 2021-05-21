@@ -28,7 +28,12 @@ export class AccessComponent implements OnInit {
     };
     localStorage.setItem('access', JSON.stringify(access));
   }
-  decline(): void {
+
+  cancelConfirm(): void {
+    this.setAccess(false);
+    window.location.reload();
+  }
+  withoutConfirm(): void {
     this.router.navigate(['/start-page']);
   }
   confirm(): void {

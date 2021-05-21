@@ -10,10 +10,13 @@
   </small>
   <span *ngIf="access" class="form-text alert-success">Ви успішно авторизовані</span>
   <div class="mb-3" *ngIf="!access">
-    <a (click)="decline()" class="link-inverse">Продовжити без авторизації</a>
+    <a (click)="withoutConfirm()" class="link-inverse">Продовжити без авторизації</a>
+  </div>
+  <div class="mb-3" *ngIf="access">
+    <a (click)="cancelConfirm()" class="link-inverse">Скасувати авторизацію</a>
   </div>
   <button class="btn btn-lg btn-primary btn-block" (click)="confirm()" *ngIf="!access">Підтвердити</button>
-  <button class="btn btn-lg btn-primary btn-block" (click)="decline()" *ngIf="access">Продовжити</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="withoutConfirm()" *ngIf="access">Продовжити</button>
   <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
 </form>
 </div>
