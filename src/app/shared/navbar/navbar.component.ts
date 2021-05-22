@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  title = 'Авторизація';
+  title = 'Додавання абітурієнта';
   constructor(public router: Router, public toastrService: ToastrService) { }
 
   ngOnInit(): void {
