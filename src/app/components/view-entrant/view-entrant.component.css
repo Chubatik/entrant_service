@@ -43,4 +43,5 @@ ng-select{
   border-radius: 10px;
   margin: 0;
   padding: inherit;
+  border-width: thin;
 }

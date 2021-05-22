@@ -8,3 +8,6 @@ nav{
 .nav-item:hover {
   background-color: rgb(59, 110, 177);
 }
+.pointer {
+  cursor: pointer;
+}

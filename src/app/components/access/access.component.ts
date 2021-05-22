@@ -12,6 +12,7 @@ export class AccessComponent implements OnInit {
   access = false;
   password: string;
   passwordMatch = true;
+  currentYear = new Date();
   constructor(public httpService: HttpService, private router: Router) { }
 
   ngOnInit(): void {

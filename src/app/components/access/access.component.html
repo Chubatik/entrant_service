@@ -17,6 +17,6 @@
   </div>
   <button class="btn btn-lg btn-primary btn-block" (click)="confirm()" *ngIf="!access">Підтвердити</button>
   <button class="btn btn-lg btn-primary btn-block" (click)="withoutConfirm()" *ngIf="access">Продовжити</button>
-  <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+  <p class="mt-5 mb-3 text-muted">© {{currentYear | date : 'yyyy'}}</p>
 </form>
 </div>

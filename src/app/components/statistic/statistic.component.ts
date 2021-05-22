@@ -90,7 +90,7 @@ export class StatisticComponent implements OnInit {
         this.years = expMethods.getYearsArr(data.data.years);
         this.barChartLabels = expMethods.getSpecsArr(this.specialties);
       }, error => {
-        this.toastrService.error('Помилка при завантаженні спеціальностей та пільг', this.title);
+        this.toastrService.error('Помилка при завантаженні статистичних даних', this.title);
       });
   }
 }

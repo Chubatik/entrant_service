@@ -3,6 +3,7 @@ import {HttpService} from '../../services/http/http.service';
 import {NgForm} from '@angular/forms';
 import {IEntrant} from '../../interfaces/entrant/entrant';
 import {ToastrService} from 'ngx-toastr';
+import {setNullValue} from '../../shared/methods/methods';
 
 @Component({
   selector: 'app-add-entrant',
@@ -100,13 +101,7 @@ export class AddEntrantComponent implements OnInit {
   getMatch(value, regex: RegExp): boolean {
     return value === undefined || value === null ? false : !!value.toString().match(regex);
   }
-  setNullValue(obj): void {
-    for (const i in obj) {
-      if (obj.hasOwnProperty(i) && obj[i] === undefined){
-        obj[i] = null;
-      }
-    }
-  }
+
   checkMatch(): boolean {
     for (const i in this.match) {
       if (this.match[i] === false) return false;
@@ -132,7 +127,7 @@ export class AddEntrantComponent implements OnInit {
       specialtyId: this.specialtyId,
       surname: this.surname
     };
-    this.setNullValue(entrant);
+    setNullValue(entrant);
     if (this.checkMatch()){
       this.httpService.addEntrant(entrant).subscribe(
         (data) => {

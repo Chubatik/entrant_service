@@ -70,7 +70,6 @@ entrants = [];
     this.filter.privilegeId = this.privilegeId;
     this.filter.specialtyId = this.specialtyId;
     this.filter.year = this.year;
-    console.log(this.filter.isHostel)
     // expMethods.setNullValue(this.filter);
     this.httpService.getEntrants( this.page === 0 ? 0 : this.page - 1 , this.filter ).subscribe(
       data => {
