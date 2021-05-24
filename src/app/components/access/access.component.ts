@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../services/http/http.service';
 import {Router} from '@angular/router';
 import {getAccess} from '../../shared/methods/methods';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-access',
@@ -13,7 +14,7 @@ export class AccessComponent implements OnInit {
   password: string;
   passwordMatch = true;
   currentYear = new Date();
-  constructor(public httpService: HttpService, private router: Router) { }
+  constructor(public httpService: HttpService, private router: Router, public toastrService: ToastrService) { }
 
   ngOnInit(): void {
     if (!getAccess()) {
@@ -41,6 +42,7 @@ export class AccessComponent implements OnInit {
     this.httpService.getAccess(this.password).subscribe(
       (data) => {
         this.setAccess(data);
+        this.toastrService.success('Ви успішно авторизовані', 'Авторизація');
         this.router.navigate([`/start-page`]);
       }, error => {
         this.passwordMatch = false;
